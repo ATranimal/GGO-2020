@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Spaceship : MonoBehaviour
 {
-    [SerializeField] float speed = 10;
+    [SerializeField] float movementSpeed = 10;
     [SerializeField] float padding = 0.2f;
+    [SerializeField] GameObject mochiProjectile;
+    [SerializeField] float fireRate = 0.1f;
 
     float xRange, yRange;
 
@@ -13,8 +15,6 @@ public class Spaceship : MonoBehaviour
     void Start()
     {
         SetUpMoveBoundaries();
-        Debug.Log(xRange);
-        Debug.Log(yRange);
     }
 
     // Update is called once per frame
@@ -22,6 +22,16 @@ public class Spaceship : MonoBehaviour
     {
         Move();
         PreventOutOfBounds();
+
+        // Hold space to shoot continuously
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InvokeRepeating("Shoot", 0, fireRate);
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            CancelInvoke("Shoot");
+        }
     }
 
     private void Move()
@@ -29,8 +39,8 @@ public class Spaceship : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
-        transform.Translate(Vector2.up * verticalInput * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * horizontalInput * movementSpeed * Time.deltaTime);
+        transform.Translate(Vector2.up * verticalInput * movementSpeed * Time.deltaTime);
     }
 
     private void SetUpMoveBoundaries()
@@ -58,5 +68,10 @@ public class Spaceship : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, -yRange);
         }
+    }
+
+    private void Shoot()
+    {
+        Instantiate(mochiProjectile, transform.position, mochiProjectile.transform.rotation);
     }
 }

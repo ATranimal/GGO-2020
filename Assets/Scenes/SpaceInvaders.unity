@@ -392,5 +392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2345084d787091c458769f5e7f9705a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  movementSpeed: 10
   padding: 0.2
+  mochiProjectile: {fileID: 7429574303858874061, guid: e76ae489a6c84ac48a6eab9a80f5bda1,
+    type: 3}
+  fireRate: 0.1
