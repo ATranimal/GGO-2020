@@ -5,17 +5,23 @@ using UnityEngine;
 public class Spaceship : MonoBehaviour
 {
     [SerializeField] float speed = 10;
+    [SerializeField] float padding = 0.2f;
+
+    float xRange, yRange;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetUpMoveBoundaries();
+        Debug.Log(xRange);
+        Debug.Log(yRange);
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        PreventOutOfBounds();
     }
 
     private void Move()
@@ -25,5 +31,32 @@ public class Spaceship : MonoBehaviour
 
         transform.Translate(Vector2.right * horizontalInput * speed * Time.deltaTime);
         transform.Translate(Vector2.up * verticalInput * speed * Time.deltaTime);
+    }
+
+    private void SetUpMoveBoundaries()
+    {
+        // Set range relative to the camera
+        xRange = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, -10)).x - padding;
+        yRange = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, -10)).y - padding;
+    }
+
+    private void PreventOutOfBounds()
+    {
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector2(xRange, transform.position.y);
+        }
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector2(-xRange, transform.position.y);
+        }
+        if (transform.position.y > yRange)
+        {
+            transform.position = new Vector2(transform.position.x, yRange);
+        }
+        if (transform.position.y < -yRange)
+        {
+            transform.position = new Vector2(transform.position.x, -yRange);
+        }
     }
 }
