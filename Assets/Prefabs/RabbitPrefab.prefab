@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2394092249505626164}
   - component: {fileID: 2080273771107469257}
   - component: {fileID: 8662442662667802942}
+  - component: {fileID: 798002582436446899}
   m_Layer: 0
   m_Name: RabbitPrefab
   m_TagString: Untagged
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &798002582436446899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896004316803943905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c529dd55f51d53f4caca3001169f99d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
