@@ -4,15 +4,57 @@ using UnityEngine;
 
 public class MochiClicker : MonoBehaviour
 {
+    private float _timeStampOpen;
+    private float _timeStampClose;
+    public float delayBetweenClicks = 1f;
+
+    bool isClickable;
+
+    SpriteRenderer spriteRenderer;
+    Color activeColor;
+
+    // temp mochi counter
+    int mochiCounter;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.white;
+
+        _timeStampOpen = Time.time;
+        _timeStampClose = Time.time + 0.2f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (_timeStampOpen >= Time.time)
+        {
+            spriteRenderer.color = Color.white;
+        } else if (_timeStampOpen <= Time.time && _timeStampClose >= Time.time)
+        {
+            spriteRenderer.color = Color.red;
+            isClickable = true;
+        }
+        else if (_timeStampOpen <= Time.time && _timeStampClose <= Time.time)
+        {
+            _timeStampOpen += delayBetweenClicks;
+            _timeStampClose += delayBetweenClicks;
+            isClickable = false;
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (isClickable)
+            AddMochi(1);
+        if (!isClickable)
+            AddMochi(-1);
+    }
+
+    void AddMochi(int mochiChange)
+    {
+        mochiCounter += mochiChange;
+        Debug.Log(mochiCounter);
     }
 }
