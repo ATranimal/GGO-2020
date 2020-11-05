@@ -9,17 +9,18 @@ public class RabbitSpawner : MonoBehaviour
     [SerializeField]
     float frequency;
 
-    float _
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    float _timeUntilNextSpawn;
 
     // Update is called once per frame
     void Update()
     {
-        
+        bool isTimeToSpawn = _timeUntilNextSpawn <= Time.time;
+        if (isTimeToSpawn)
+        {
+            Instantiate(rabbitPrefab);
+            _timeUntilNextSpawn += frequency;
+        }
+
+
     }
 }
