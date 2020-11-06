@@ -22,15 +22,14 @@ public class RabbitSpawner : MonoBehaviour
             listOfWaypoints.Add(positionOfWaypoint);
         }
             
-
-        PrintWaypoints();
+        // PrintWaypoints();
     }
     void Update()
     {
         bool isTimeToSpawn = _timeUntilNextSpawn <= Time.time;
         if (isTimeToSpawn)
         {
-            Instantiate(rabbitPrefab);
+            Instantiate(rabbitPrefab, transform.position, Quaternion.identity);
 
             _timeUntilNextSpawn += timeBetweenSpawns;
         }
