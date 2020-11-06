@@ -7,12 +7,7 @@ public class RabbitMovement : MonoBehaviour
     private float rabbitSpeed = 2.0f;
     private int currentWaypoint = 0;
 
-    private Vector2[] waypoints =
-    {
-        new Vector2(1,1),
-        new Vector2(1,2),
-        new Vector2(2,2)
-    };
+    public List<Vector2> waypoints;
 
     void Update()
     {
@@ -25,13 +20,13 @@ public class RabbitMovement : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, targetPoint, step);
     }
 
-    void MoveOnPath(Vector2[] points)
+    void MoveOnPath(List<Vector2> points)
     {
         bool isAtWaypoint = Vector2.Distance((Vector2)transform.position, points[currentWaypoint]) < 0.2f;
 
         if (isAtWaypoint)
         { 
-            bool isAtTheEnd = currentWaypoint == points.Length - 1;
+            bool isAtTheEnd = currentWaypoint == points.Count - 1;
 
             if (isAtTheEnd)
                 Destroy(this);

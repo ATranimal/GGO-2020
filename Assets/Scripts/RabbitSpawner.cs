@@ -29,7 +29,8 @@ public class RabbitSpawner : MonoBehaviour
         bool isTimeToSpawn = _timeUntilNextSpawn <= Time.time;
         if (isTimeToSpawn)
         {
-            Instantiate(rabbitPrefab, transform.position, Quaternion.identity);
+            var rabbit = Instantiate(rabbitPrefab, transform.position, Quaternion.identity);
+            rabbit.GetComponent<RabbitMovement>().waypoints = listOfWaypoints;
 
             _timeUntilNextSpawn += timeBetweenSpawns;
         }
