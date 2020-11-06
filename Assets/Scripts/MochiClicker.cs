@@ -13,8 +13,6 @@ public class MochiClicker : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Color activeColor;
 
-    // temp mochi counter
-    int mochiCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +22,7 @@ public class MochiClicker : MonoBehaviour
 
         _timeStampOpen = Time.time;
         _timeStampClose = Time.time + 0.2f;
+
     }
 
     private void Update()
@@ -48,13 +47,16 @@ public class MochiClicker : MonoBehaviour
     {
         if (isClickable)
             AddMochi(1);
-        if (!isClickable)
-            AddMochi(-1);
+        else if (!isClickable) {
+            if (MochiDisplay.mochiCounter > 0) {
+                AddMochi(-1);
+            }
+        }
     }
 
     void AddMochi(int mochiChange)
     {
-        mochiCounter += mochiChange;
-        Debug.Log(mochiCounter);
+        MochiDisplay.mochiCounter += mochiChange;
+        Debug.Log(MochiDisplay.mochiCounter);
     }
 }
