@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 130406180}
   - component: {fileID: 130406179}
   m_Layer: 5
-  m_Name: Mochi Resources Display
+  m_Name: Mochi Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mochi Resources Display
+  m_Text: Mochi Display
 --- !u!114 &130406180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f165cdf8710b81e0a7d67994a0d5885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mochiResourcesText: {fileID: 130406179}
+  mochiText: {fileID: 130406179}
 --- !u!222 &130406181
 CanvasRenderer:
   m_ObjectHideFlags: 0
