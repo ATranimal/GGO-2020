@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 865204757050773927}
   - component: {fileID: 865204757050773926}
-  - component: {fileID: 865204757050773925}
   - component: {fileID: 865204757050773924}
   - component: {fileID: 735155283078459549}
+  - component: {fileID: -6412592645462692226}
   m_Layer: 0
-  m_Name: Rabbit
-  m_TagString: Untagged
+  m_Name: Space Rabbit
+  m_TagString: Rabbit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,18 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &865204757050773925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 865204757050773923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9beb436d56b75d46a7add8b72784603, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &865204757050773924
 Rigidbody2D:
   serializedVersion: 4
@@ -143,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &-6412592645462692226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865204757050773923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 074d8af8b22e4f64d9850f4a9b8f718a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
