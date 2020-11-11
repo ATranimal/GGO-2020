@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TowerDefense.unity
     guid: fec4fa47481b30943bb7e3fe373d3342
+  - enabled: 1
+    path: Assets/Scenes/SpaceInvaders.unity
+    guid: ad4aa290426ba1941a2acc4eba13d509
   m_configObjects: {}

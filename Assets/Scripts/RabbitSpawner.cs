@@ -1,30 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RabbitSpawner : MonoBehaviour
 {
     [SerializeField]
     GameObject rabbitPrefab;
+
     [SerializeField]
-    float timeBetweenSpawns;
+    float timeBetweenSpawns = 5f;
+
+    [SerializeField]
+    float frequencyOfSpawnRateIncrease = 5f;
+
+    [SerializeField]
+    float timeOfTDStage = 60f;
 
     List<Vector2> listOfWaypoints = new List<Vector2>();
 
     float _timeUntilNextSpawn;
+    float _timeUntilNextSpawnFrequencyIncrease;
+
+    
 
     private void Start()
     {
-        for (int waypointNumber = 0; waypointNumber < transform.childCount; waypointNumber++)
-        {
-            var child = transform.GetChild(waypointNumber);
-            Vector2 positionOfWaypoint = ((Vector2)child.position);
-            listOfWaypoints.Add(positionOfWaypoint);
-        }
-            
-        // PrintWaypoints();
+        MakeListOfWaypoints();
     }
     void Update()
+    {
+        IncreaseSpawnFrequency();
+        SpawnRabbit();
+        EndStage();
+    }
+
+    void PrintWaypoints()
+    {
+        foreach (var point in listOfWaypoints)
+        {
+            Debug.Log(point);
+        }
+    }
+
+    void IncreaseSpawnFrequency()
+    {
+        bool isTimeToIncreaseSpawnFrequency = _timeUntilNextSpawnFrequencyIncrease <= Time.time;
+        if (isTimeToIncreaseSpawnFrequency)
+        {
+            if (timeBetweenSpawns > 1)
+                timeBetweenSpawns--;
+            _timeUntilNextSpawnFrequencyIncrease += frequencyOfSpawnRateIncrease;
+        }
+    }
+
+    void SpawnRabbit()
     {
         bool isTimeToSpawn = _timeUntilNextSpawn <= Time.time;
         if (isTimeToSpawn)
@@ -36,11 +66,19 @@ public class RabbitSpawner : MonoBehaviour
         }
     }
 
-    void PrintWaypoints()
+    void MakeListOfWaypoints()
     {
-        foreach (var point in listOfWaypoints)
+        for (int waypointNumber = 0; waypointNumber < transform.childCount; waypointNumber++)
         {
-            Debug.Log(point);
+            var child = transform.GetChild(waypointNumber);
+            Vector2 positionOfWaypoint = ((Vector2)child.position);
+            listOfWaypoints.Add(positionOfWaypoint);
         }
+    }
+
+    void EndStage()
+    {
+        if (Time.time >= timeOfTDStage)
+            SceneManager.LoadScene(sceneBuildIndex: 1);
     }
 }
