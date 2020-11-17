@@ -6,8 +6,12 @@ public class Spaceship : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 10;
     [SerializeField] float padding = 0.2f;
-    [SerializeField] GameObject mochiProjectile;
+    [SerializeField] GameObject projectilePrefab;
     [SerializeField] float fireRate = 0.1f;
+    [SerializeField] int health = 5;
+    [SerializeField] float projectileSpeed = 10;
+    [SerializeField] int collisionDamage = 1;
+
 
     float xRange, yRange;
 
@@ -72,6 +76,39 @@ public class Spaceship : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(mochiProjectile, transform.position, mochiProjectile.transform.rotation);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity) as GameObject;
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 11)
+        {
+            Destroy(collision.gameObject);
+            health -= collisionDamage;
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            DamageDealer damageDealer = collision.GetComponent<DamageDealer>();
+            if (!damageDealer)
+            {
+                return;
+            }
+            ProcessHit(damageDealer);
+        }
+    }
+
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.getDamage();
+        damageDealer.Hit();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

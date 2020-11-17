@@ -47,13 +47,4 @@ public class EnemyPathing : MonoBehaviour
         this.waveConfig = waveConfig;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Rabbit"))
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-
-    }
 }
