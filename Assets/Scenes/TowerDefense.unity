@@ -736,7 +736,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rabbitPrefab: {fileID: 896004316803943905, guid: 09e07035219648c42839851810b27c2d,
     type: 3}
-  timeBetweenSpawns: 1
+  timeBetweenSpawns: 5
+  frequencyOfSpawnRateIncrease: 10
+  timeOfTDStage: 60
 --- !u!4 &1574570432
 Transform:
   m_ObjectHideFlags: 0
